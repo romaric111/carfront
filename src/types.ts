@@ -1,4 +1,5 @@
 export type CarResponse = {
+    
     brand: string;
     model: string;
     color: string;
