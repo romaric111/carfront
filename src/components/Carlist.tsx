@@ -9,6 +9,8 @@ import { getCars, deletecar } from "../api/carapi";
 import { useState } from "react";
 import AddCar from "./addCar";
 import EditCar from "./EditCar";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Carlist() {
   const [open, setOpen] = useState(false);
@@ -55,7 +57,9 @@ function Carlist() {
       filterable: false,
       disableColumnMenu: true,
       renderCell: (params: GridCellParams) => (
-        <button
+        <IconButton
+          aria-label="Delete"
+          size="small"
           onClick={() => {
             if (
               window.confirm(
@@ -66,8 +70,8 @@ function Carlist() {
             }
           }}
         >
-          Delete
-        </button>
+          <DeleteIcon fontSize="small" />
+        </IconButton>
       ),
     },
   ];
