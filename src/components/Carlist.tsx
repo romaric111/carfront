@@ -92,6 +92,8 @@ function Carlist() {
           columns={columns}
           disableRowSelectionOnClick={true}
           getRowId={(row) => row._links.self.href}
+          slotProps={{ toolbar: { showQuickFilter: true } }}
+          showToolbar
         />
         <Snackbar
           open={open}
