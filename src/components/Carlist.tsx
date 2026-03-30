@@ -8,6 +8,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCars, deletecar } from "../api/carapi";
 import { useState } from "react";
 import AddCar from "./addCar";
+import EditCar from "./EditCar";
 
 function Carlist() {
   const [open, setOpen] = useState(false);
@@ -35,6 +36,16 @@ function Carlist() {
     },
     { field: "modelYear", headerName: "Model Year", width: 150 },
     { field: "price", headerName: "Price", width: 150 },
+
+    {
+      field: "edit",
+      headerName: "",
+      width: 90,
+      sortable: false,
+      filterable: false,
+      disableColumnMenu: true,
+      renderCell: (params: GridCellParams) => <EditCar cardata={params.row} />,
+    },
 
     {
       field: "delete",
