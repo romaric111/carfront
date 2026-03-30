@@ -7,6 +7,7 @@ import Snackbar from "@mui/material/Snackbar";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCars, deletecar } from "../api/carapi";
 import { useState } from "react";
+import AddCar from "./addCar";
 
 function Carlist() {
   const [open, setOpen] = useState(false);
@@ -74,6 +75,7 @@ function Carlist() {
   } else {
     return (
       <>
+        <AddCar />
         <DataGrid
           rows={data}
           columns={columns}
