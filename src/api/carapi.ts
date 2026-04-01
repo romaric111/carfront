@@ -14,7 +14,9 @@ export const getCars = async (): Promise<CarResponse[]> => {
 };
 
 export const deletecar = async (link: string): Promise<CarResponse> => {
-  const response = await axios.delete(link);
+  const response = await axios.delete(link, {
+    headers: getAuthHeader(),
+  });
   return response.data;
 };
 export const addCar = async (car: Car): Promise<CarResponse> => {
