@@ -1,8 +1,15 @@
 import axios from "axios";
 import type { Car, CarResponse, CarEntry } from "../types";
 
+const getAuthHeader = () => {
+  const token = sessionStorage.getItem("jwt");
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
 export const getCars = async (): Promise<CarResponse[]> => {
-  const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cars`);
+  const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/cars`, {
+    headers: getAuthHeader(),
+  });
   return response.data._embedded.cars;
 };
 
@@ -17,6 +24,7 @@ export const addCar = async (car: Car): Promise<CarResponse> => {
     {
       headers: {
         "Content-Type": "application/json",
+        ...getAuthHeader(),
       },
     },
   );
@@ -27,6 +35,7 @@ export const updateCar = async (carEntry: CarEntry): Promise<CarResponse> => {
   const response = await axios.put(carEntry.url, carEntry.car, {
     headers: {
       "Content-Type": "application/json",
+      ...getAuthHeader(),
     },
   });
   return response.data;
